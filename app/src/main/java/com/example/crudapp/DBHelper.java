@@ -38,11 +38,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_USER_CONTACT, contact);
         cv.put(COLUMN_USER_DOB, dob);
         long insert = db.insert(TABLE_NAME, null, cv);
-        if (insert == -1){
-            return false;
-        }else {
-            return true;
-        }
+        return insert != -1;
     }
 
     public Cursor view_data(){
