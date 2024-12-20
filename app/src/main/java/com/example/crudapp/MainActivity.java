@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
-
-
         });
         name = (EditText) findViewById(R.id.name);
         id = (EditText) findViewById(R.id.id);
@@ -45,20 +42,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 boolean b = dbHelper.insert_data(name.getText().toString(), contact.getText().toString(), dob.getText().toString());
-                if (b == true) {
+                if (b) {
                     Toast.makeText(MainActivity.this, "Data inserted", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(MainActivity.this, "Data not inserted", Toast.LENGTH_SHORT).show();
                 }
             }
-
             });
 
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 boolean b = dbHelper.update_data(id.getText().toString(), name.getText().toString(), contact.getText().toString(), dob.getText().toString());
-                if (b == true) {
+                if (b) {
                     Toast.makeText(MainActivity.this, "Data updated", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(MainActivity.this, "Data not updated", Toast.LENGTH_SHORT).show();
@@ -88,15 +84,14 @@ public class MainActivity extends AppCompatActivity {
                     show_Message("Error", "No data found");
                     return;
                 }
-                StringBuffer buffer = new StringBuffer();
+                StringBuilder buffer = new StringBuilder();
                 while (cursor.moveToNext()){
-                    buffer.append("Id : "+ cursor.getString(0)+ "\n" );
-                    buffer.append("Name : "+ cursor.getString(1)+ "\n" );
-                    buffer.append("Contact : "+ cursor.getString(2)+ "\n" );
-                    buffer.append("Dob : "+ cursor.getString(3)+ "\n" +"\n" );
+                    buffer.append("Id : ").append(cursor.getString(0)).append("\n");
+                    buffer.append("Name : ").append(cursor.getString(1)).append("\n");
+                    buffer.append("Contact : ").append(cursor.getString(2)).append("\n");
+                    buffer.append("Dob : ").append(cursor.getString(3)).append("\n").append("\n");
                 }
                 show_Message( buffer.toString(),"Data");
-
             }
         });
     }
@@ -106,6 +101,6 @@ public class MainActivity extends AppCompatActivity {
         builder.setCancelable(true);
         builder.setTitle(Title);
         builder.setMessage(Message);
-       builder.show();
+        builder.show();
     }
 }
