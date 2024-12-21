@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         view = findViewById(R.id.btn_view);
         dbHelper = new DBHelper(MainActivity.this);
         view_all();
-
         insert.setOnClickListener(v -> {
             boolean b = dbHelper.insert_data(name.getText().toString(), contact.getText().toString(), dob.getText().toString());
             if (b) {
@@ -44,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Data not inserted", Toast.LENGTH_SHORT).show();
             }
         });
-
         update.setOnClickListener(v -> {
             boolean b = dbHelper.update_data(id.getText().toString(), name.getText().toString(), contact.getText().toString(), dob.getText().toString());
             if (b) {
@@ -53,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Data not updated", Toast.LENGTH_SHORT).show();
             }
         });
-
         delete.setOnClickListener(v -> {
             Integer i = dbHelper.delete_data(id.getText().toString());
             if (i > 0){
@@ -63,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     private void view_all() {
         view.setOnClickListener(v -> {
             Cursor cursor = dbHelper.view_data();
@@ -81,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
             show_Message( buffer.toString(),"Data");
         });
     }
-
     public void show_Message(String Message,String Title){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(true);
